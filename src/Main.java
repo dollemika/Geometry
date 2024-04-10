@@ -9,7 +9,10 @@ public class Main {
         ArrayList<Triangle> x = readTrianglesFromFile(fname);
         System.out.println(x);
         System.out.println(sumAreaForList(x));
-
+        fname = "input2.txt";
+        ArrayList<Triangle> y = readTrianglesFromFile(fname);
+        System.out.println(y);
+        System.out.println(findUniqueTriangles(x,y));
     }
     public static ArrayList<Triangle> readTrianglesFromFile(String filename) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(filename));
@@ -31,5 +34,13 @@ public class Main {
             sum += x.area();
         }
         return sum;
+    }
+    public static ArrayList<Triangle> findUniqueTriangles(ArrayList<Triangle> x, ArrayList<Triangle> y){
+        ArrayList<Triangle> t = new ArrayList<>();
+        for (Triangle i: x) {
+            if (!y.contains(i))
+                t.add(i);
+        }
+        return t;
     }
 }

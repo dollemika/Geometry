@@ -57,6 +57,10 @@ class Triangle extends Figure{
         this.b = b;
         this.c = c;
     }
+    public static boolean checkIfExists(double a, double b, double c){
+        if (a<b+c && b<a+c && c<a+b) return true;
+        else return false;
+    }
     public void setSides(double a, double b, double c) {
         this.a = a;
         this.b = b;
@@ -68,5 +72,14 @@ class Triangle extends Figure{
     }
     public double halfPer(){
         return a+b+c;
+    }
+
+    @Override
+    public String toString() {
+        return "Triangle {" +
+                "a=" + a +
+                ", b=" + b +
+                ", c=" + c +
+                '}';
     }
 }

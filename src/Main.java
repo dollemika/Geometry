@@ -1,14 +1,35 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        Figure f1 = new Figure();
-        Circle c1 = new Circle();
-        c1.setRadius(2);
-        Figure f2 = new Circle(2);
-        System.out.println(f1.area());
-        System.out.println(c1.area());
-        System.out.println(f2.equalArea(c1));
-        Rectangle r1 = new Rectangle(2,3);
-        Triangle t1 = new Triangle(2,3,5);
-        System.out.println(r1.equalArea(t1));
+    public static void main(String[] args) throws FileNotFoundException {
+        String fname = "input.txt";
+        ArrayList<Triangle> x = readTrianglesFromFile(fname);
+        System.out.println(x);
+        System.out.println(sumAreaForList(x));
+
+    }
+    public static ArrayList<Triangle> readTrianglesFromFile(String filename) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(filename));
+        ArrayList<Triangle> list = new ArrayList<>();
+        while (scanner.hasNext()){
+            double a = scanner.nextDouble();
+            double b = scanner.nextDouble();
+            double c = scanner.nextDouble();
+            if (Triangle.checkIfExists(a,b,c)){
+                list.add(new Triangle(a,b,c));
+            }
+        }
+        scanner.close();
+        return list;
+    }
+    public static double sumAreaForList(ArrayList<Triangle> list){
+        double sum = 0;
+        for (Triangle x: list){
+            sum += x.area();
+        }
+        return sum;
     }
 }
